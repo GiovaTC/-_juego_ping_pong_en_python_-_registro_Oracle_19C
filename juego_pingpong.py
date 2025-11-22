@@ -60,3 +60,34 @@ while True:
                 velocidad_jugador = 0   
 
 # Movimiento jugador    
+JUGADOR.y += velocidad_jugador
+if JUGADOR.top <= 0: JUGADOR.top = 0
+if JUGADOR.bottom >= ALTO: JUGADOR.bottom = ALTO
+
+# Movimiento CPU (IA)
+if CPU.centery < PELOTA.centery:
+    CPU.y += velocidad_cpu
+if CPU.centery > PELOTA.centery:
+    CPU.y -= velocidad_cpu
+if CPU.top <= 0: CPU.top = 0
+if CPU.bottom >= ALTO: CPU.bottom = ALTO
+
+# Movimiento pelota
+PELOTA.x += velocidad_pelota_x
+PELOTA.y += velocidad_pelota_y
+
+# Colisiones
+if PELOTA.top <= 0 or PELOTA.bottom >= ALTO:
+    velocidad_pelota_y *= -1
+if PELOTA.colliderect(JUGADOR) or PELOTA.colliderect(CPU):
+    velocidad_pelota_x *= -1
+
+# Puntaje
+if PELOTA.left <= 0:
+    puntaje_cpu += 1
+    PELOTA.center = (ANCHO//2, ALTO//2)
+if PELOTA.right >= ANCHO:
+    puntaje_jugador += 1
+    PELOTA.center = (ANCHO//2, ALTO//2)
+
+# Dibujado
