@@ -91,3 +91,14 @@ if PELOTA.right >= ANCHO:
     PELOTA.center = (ANCHO//2, ALTO//2)
 
 # Dibujado
+VENTANA.fill(NEGRO)
+pygame.draw.rect(VENTANA, BLANCO, JUGADOR)
+pygame.draw.rect(VENTANA, BLANCO, CPU)
+pygame.draw.ellipse(VENTANA, BLANCO, PELOTA)
+pygame.draw.aaline(VENTANA, BLANCO, (ANCHO//2, 0), (ANCHO//2, ALTO))
+
+texto = fuente.render(f"Jugador: {puntaje_jugador}   CPU: {puntaje_cpu}", True, BLANCO)
+VENTANA.blit(texto, (ANCHO//3, 20))
+
+pygame.display.flip()
+clock.tick(60)  
