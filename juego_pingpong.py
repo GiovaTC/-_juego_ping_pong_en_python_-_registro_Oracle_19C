@@ -1,11 +1,11 @@
 import pygame
 import sys
-import cx_Oracle
+import oracledb
 
 # =================== CONFIGURACIÓN ORACLE ===================
 def registrar_resultado(jugador, puntaje_jugador, puntaje_cpu):
     try:
-        conexion = cx_Oracle.connect("system", "Tapiero123", "localhost:1521/orcl")
+        conexion = oracledb.connect("system", "Tapiero123", "localhost:1521/orcl")
         cursor = conexion.cursor()
         sql = """INSERT INTO JUEGO PINGPONG (JUGADOR, PUNTAJE_JUGADOR, PUNTAJE_CPU)
                 VALUES (:1, :2, :3)"""  
